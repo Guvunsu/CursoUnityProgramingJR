@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
         //Input del jugador 
 
         HorizontalInput = Input.GetAxis("Horizontal");
-        ForwarInput = Input.GetAxis("Vertical");
+       
 
 
         // move the vehicule forward
