@@ -12,10 +12,13 @@ public class DestroyOutOfBounds : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        destructionPrefabs();
+    }
+    public void destructionPrefabs() {
         if (transform.position.z > topBound) {
             Destroy(gameObject);
-        }
-        else if (transform.position.z < lowerBound) {
+        } else if (transform.position.z < lowerBound) {
+            Debug.Log("gameover");
             Destroy(gameObject);
         }
 
