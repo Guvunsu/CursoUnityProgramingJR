@@ -5,7 +5,8 @@ using UnityEngine;
 public class SpawnManagerX : MonoBehaviour
 {
     public GameObject[] ballPrefabs;
-    public int balls
+    public int balls;//ahi me quede la ultima vez en este challenger
+
 
     private float spawnLimitXLeft = -22;
     private float spawnLimitXRight = 7;
