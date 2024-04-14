@@ -16,6 +16,9 @@ public class EnemyFollowMe : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         enemyFollowYou();
+        if (transform.position.y < -10) {
+            Destroy(gameObject);
+        }
     }
     void enemyFollowYou() {
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
