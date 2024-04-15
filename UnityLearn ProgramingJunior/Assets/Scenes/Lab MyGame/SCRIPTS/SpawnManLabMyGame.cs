@@ -13,16 +13,23 @@ public class SpawnManLabMyGame : MonoBehaviour {
     private float xSpawnRange = 4.35f;
     private float zSuperPoderRange = 6.40f;
 
+    private float superpoderSpawnTime = 5.0f;
+    private float enemySpawnTime = 1.0f;
+    private float starDelay = 1.0f;
+
     Vector3 spawnPositions;
 
     float randomX;
+    float randomZ;
     int randomIndex;
     float ySpawn = 0.75f;
 
 
 
     void Start() {
-        EnemiesSpawn();
+        EnemiesSpawnRandom();
+        invokeRepeting();
+        SuperpoderSpawnRandom();
     }
 
     void Update() {
@@ -31,7 +38,7 @@ public class SpawnManLabMyGame : MonoBehaviour {
 
 
 
-    void EnemiesSpawn() {
+    void EnemiesSpawnRandom() {
         randomX = Random.Range(-xSpawnRange, xSpawnRange);
         randomIndex = Random.Range(0, enemies.Length);
 
@@ -40,6 +47,15 @@ public class SpawnManLabMyGame : MonoBehaviour {
         Instantiate(enemies[randomIndex], spawnPositions, enemies[randomIndex].gameObject.transform.rotation);
     }
 
+    void SuperpoderSpawnRandom() {
+        randomX = Random.Range(-xSpawnRange, xSpawnRange);
+        randomZ = Random.Range(-zSuperPoderRange, zSuperPoderRange);
+        spawnPositions = new Vector3(randomX, ySpawn, randomZ);
 
-
+        Instantiate(superPoder, spawnPositions, superPoder.gameObject.transform.rotation);
+    }
+    void invokeRepeting() {
+        InvokeRepeating("spawnRandomEnemy", starDelay, enemySpawnTime);
+        InvokeRepeating("spawnSuperPoder", starDelay, superpoderSpawnTime);
+    }
 }
