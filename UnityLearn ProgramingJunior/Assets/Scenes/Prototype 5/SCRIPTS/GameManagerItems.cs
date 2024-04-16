@@ -22,9 +22,9 @@ public class GameManagerItems : MonoBehaviour {
 
     public bool isGameActive;
 
-    void Start() {
-        StartGame(difficulty);//corregir esto
-    }
+    //void Start() {
+    //    StartGame(difficulty);//corregir esto
+    //}
     void Update() {
 
     }
