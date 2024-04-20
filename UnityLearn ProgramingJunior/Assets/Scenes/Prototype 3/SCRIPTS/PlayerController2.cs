@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour {
+    [SerializeField] private Animator playerAnimator;
+
     public Rigidbody p1RB;
-    private Animator playerAnimator;
     public ParticleSystem dirtparticleSystem;
     public ParticleSystem smokeparticleSystem;
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioSource playerAudio;
-    public float jumpForce = 10.0f;
+    
+
+    public float jumpForce = 4.0f;
     public float gravityModifier;
     public bool isonGround = true;
     public bool gameOver = false;
@@ -29,7 +32,7 @@ public class PlayerController2 : MonoBehaviour {
     }
     public void jump() {
 
-        if (Input.GetKeyDown(KeyCode.Space) && isonGround && !gameOver) {
+        if (Input.GetKeyDown(KeyCode.M) && isonGround && !gameOver) {
             dirtparticleSystem.Stop();
             p1RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isonGround = false;
@@ -45,14 +48,14 @@ public class PlayerController2 : MonoBehaviour {
             dirtparticleSystem.Play();
 
         } else if (collision.gameObject.CompareTag("Obstacle")) {
-
+            //xploxionParticule.Play();
+            dirtparticleSystem.Stop();
+            playerAudio.PlayOneShot(crashSound, 1.0f);
             Debug.Log("GameOver");
             gameOver = true;
             playerAnimator.SetBool("Dead_b", true);
             playerAnimator.SetInteger("DeathType_int", 1);
             smokeparticleSystem.Play();
-            dirtparticleSystem.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);
         }
     }
 

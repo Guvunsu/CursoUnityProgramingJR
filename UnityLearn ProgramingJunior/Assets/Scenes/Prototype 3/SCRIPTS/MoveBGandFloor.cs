@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveLeft : MonoBehaviour {
+public class MoveBGandFloor : MonoBehaviour
+{
     private float speed = 30.0f;
     private PlayerController2 playerController;
     private float leftBound = -15;
@@ -14,7 +15,7 @@ public class MoveLeft : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (playerController.gameOver == false) {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
             if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle")) {
                 Destroy(gameObject);
             }
