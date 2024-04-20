@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    private float speed = 20.0f;
-    private float turnSpeed = 45.0f;
-    private float HorizontalInput;
-    private float ForwarInput;
+    [SerializeField] private float speed = 20.0f;
+    [SerializeField] private float turnSpeed = 45.0f;
+
+    private float horizontalInput;
+    private float forwarInput;
     // Start is called before the first frame update
     void Start() {
 
@@ -16,8 +17,9 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         //Input del jugador 
 
-        HorizontalInput = Input.GetAxis("Horizontal");
-       
+        horizontalInput = Input.GetAxis("Horizontal");
+        forwarInput = Input.GetAxis("Vertical");
+
 
 
         // move the vehicule forward
@@ -25,10 +27,12 @@ public class PlayerController : MonoBehaviour {
 
         //se mueve adelante el vehiculo
 
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * ForwarInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwarInput);
         // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * HorizontalInput);
 
         //we turn the vehicule , 
-        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * HorizontalInput);
+        transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
     }
-}
+    
+    }
+
