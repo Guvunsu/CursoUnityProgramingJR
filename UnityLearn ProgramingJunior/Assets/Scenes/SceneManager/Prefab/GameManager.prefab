@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   losePanel: {fileID: 0}
-  losePanelIsOpen: 1
+  losePanelIsOpen: 0
 --- !u!114 &8825036431008619336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,4 +73,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
-  gameIsPaused: 0
+  gameIsPaused: 1
