@@ -8,8 +8,6 @@ public class SpawnManager2 : MonoBehaviour {
 
     public GameObject obstaculePrefab;
 
-    private new Vector3 spawnPosition;
-
     public float startDelay = 2;
     public float repeatRate = 2;
     void Start() {
@@ -23,7 +21,7 @@ public class SpawnManager2 : MonoBehaviour {
     }
     void invokingObstacules() {
         if (playerController.gameOver == false) {
-            spawnPosition = new Vector3(25, 0, 0);
+            Vector3 spawnPosition = new Vector3(25, 0, 0);
             Instantiate(obstaculePrefab, spawnPosition, obstaculePrefab.transform.rotation);
         }
     }
