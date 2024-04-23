@@ -21,7 +21,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"E:/Documentos/Programacion/Unity Codigo/GITHUB/UnityLearnProgramingJR/UnityLearn ProgramingJunior/WebGL Builds/cUBE DICE;;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"E:/Documentos/Programacion/Unity Codigo/GITHUB/UnityLearnProgramingJR/UnityLearn ProgramingJunior/WebGL Builds/cUBE DICE/UnityLearn ProgramingJunior_Data;E:/Documentos/Programacion/Unity Codigo/GITHUB/UnityLearnProgramingJR/UnityLearn ProgramingJunior/WebGL Builds/cUBE DICE;;;;;;;;\"}"
             }
         ]
     }
