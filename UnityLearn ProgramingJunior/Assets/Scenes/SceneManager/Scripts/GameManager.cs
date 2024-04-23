@@ -2,17 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;//agregue esto y a los demas para el load 
-public class SceneManager : MonoBehaviour
+
+public class GameManager : MonoBehaviour
 {
-    public static SceneManager instance;
+    public static GameManager instance;
 
     private void Awake() {
         {
             if (instance == null) {
                 //==null todas las tipo clase gameobject de Unity, tu puedes referenciar
                 instance = this;
-                // busca y selecciona scenemanager
+                // busca y selecciona Gamemanager
                 DontDestroyOnLoad(gameObject);
                 //no destruye un permanente objetivo gameobject cuando carga la escena
             } else {
@@ -29,7 +29,7 @@ public class SceneManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public static implicit operator SceneManager(LoadAndSwitch v) {
+    public static implicit operator GameManager(LoadAndSwitch v) {
         throw new NotImplementedException();
     }
 }

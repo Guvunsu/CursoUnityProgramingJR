@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadAndSwitch : MonoBehaviour {
-    public static SceneManager Instance;
+    public static GameManager Instance;
 
     public GameObject losePanel;
 
@@ -20,7 +21,11 @@ public class LoadAndSwitch : MonoBehaviour {
     }
 
     public void sceneSwitch(string sceneName) {
-        SceneManager.instance.LoadScene(sceneName);
+        GameManager.instance.LoadScene(sceneName);
         losePanelIsOpen = false;
+    }
+
+    public static implicit operator SceneManager(LoadAndSwitch v) {
+        throw new NotImplementedException();
     }
 }
