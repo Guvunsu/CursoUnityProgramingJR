@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PausaCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8975784035426595373, guid: fbb8be935b9163b4d9b916dabd5af1ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8975784035956307214, guid: fbb8be935b9163b4d9b916dabd5af1ff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -972,6 +976,10 @@ PrefabInstance:
     - target: {fileID: 8825036431008619338, guid: 82acc02ce5738b44a8eb6c974f5b18be, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825036431008619338, guid: 82acc02ce5738b44a8eb6c974f5b18be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8825036431008619339, guid: 82acc02ce5738b44a8eb6c974f5b18be, type: 3}
       propertyPath: m_RootOrder
