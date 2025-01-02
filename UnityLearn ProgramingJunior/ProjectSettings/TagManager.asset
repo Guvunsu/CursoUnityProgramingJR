@@ -11,6 +11,8 @@ TagManager:
   - Money
   - PowerUp
   - Enemy
+  - Dog
+  - Ball
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3641743882591320802}
   m_Layer: 0
   m_Name: Ball 1
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,3 +171,7 @@ MonoBehaviour:
   - {fileID: 2178073922435996824}
   - {fileID: 4524317531697499709, guid: a325bcb65fd94414191d0ddc2514e2dc, type: 3}
   - {fileID: 7945815000853930370, guid: fc41e6839a5494e0cbaea5f0081c271d, type: 3}
+  spawnLimitXLeft: 0
+  spawnLimitXRight: 0
+  spawnPosY: 0
+  spawnPosZ: 0
