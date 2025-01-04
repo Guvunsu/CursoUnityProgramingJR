@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2178073922435996827}
   - component: {fileID: 2178073922435996825}
   - component: {fileID: 7643465358812375377}
-  - component: {fileID: 6280640533672669555}
-  - component: {fileID: 3641743882591320802}
+  - component: {fileID: 1944761302270078630}
+  - component: {fileID: 533378015058292009}
   m_Layer: 0
   m_Name: Ball 1
   m_TagString: Ball
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2178073922435996824}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.7, y: 22.9, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -143,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6280640533672669555
+--- !u!114 &1944761302270078630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd56477307ae34a53ab47afc77a08392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3641743882591320802
+  leftLimit: -15
+  bottomLimit: -10
+--- !u!114 &533378015058292009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +166,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2178073922435996824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745c25f6adc3b4804961d8389a1a74fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 22f880a64e2c84b0a8be42be264f9bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefabs:
-  - {fileID: 2178073922435996824}
-  - {fileID: 4524317531697499709, guid: a325bcb65fd94414191d0ddc2514e2dc, type: 3}
-  - {fileID: 7945815000853930370, guid: fc41e6839a5494e0cbaea5f0081c271d, type: 3}
-  spawnLimitXLeft: 0
-  spawnLimitXRight: 0
-  spawnPosY: 0
-  spawnPosZ: 0

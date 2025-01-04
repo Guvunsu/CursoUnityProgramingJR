@@ -8,10 +8,10 @@ public class SpawnManager2 : MonoBehaviour {
 
     public GameObject obstaculePrefab;
 
-    public float startDelay = 2;
+    //public float startDelay = 2;
     public float repeatRate = 2;
     void Start() {
-        InvokeRepeating("Obstacle", startDelay, repeatRate);
+        Invoke("Obstacle", repeatRate);
         playerController = GameObject.Find("Player").GetComponent<PlayerController2>();
     }
 
@@ -21,7 +21,7 @@ public class SpawnManager2 : MonoBehaviour {
     }
     void invokingObstacules() {
         if (playerController.gameOver == false) {
-            Vector3 spawnPosition = new Vector3(25, 0, 0);
+            Vector3 spawnPosition = new Vector3(0, 0, 25);
             Instantiate(obstaculePrefab, spawnPosition, obstaculePrefab.transform.rotation);
         }
     }

@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOutOfBoundsX : MonoBehaviour
-{
-    private float leftLimit = 15;
-    private float bottomLimit = 1;
+public class DestroyOutOfBoundsX : MonoBehaviour {
+    [SerializeField] float leftLimit;
+    [SerializeField] float bottomLimit;
 
     // Update is called once per frame
-    void Update()
-    {
-        // Destroy dogs if x position less than left limit
-        if (transform.position.x > leftLimit)
-        {
-            Destroy(gameObject);
-        } 
+    void Update() {
         // Destroy balls if y position is less than bottomLimit
-        else if (transform.position.z < bottomLimit)
-        {
+        if (transform.position.y < bottomLimit) {
+            Destroy(gameObject);
+        }
+       // Destroy dogs if x position less than left limit
+       else if (transform.position.x < leftLimit) {
             Destroy(gameObject);
         }
 

@@ -1,22 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour {
-    [SerializeField] private Animator playerAnimator;
 
-    public Rigidbody p1RB;
-    public ParticleSystem dirtparticleSystem;
-    public ParticleSystem smokeparticleSystem;
-    public AudioClip jumpSound;
-    public AudioClip crashSound;
-    public AudioSource playerAudio;
-    
+    [SerializeField] Rigidbody p1RB;
+    [SerializeField] Animator playerAnimator;
+    [SerializeField] ParticleSystem dirtparticleSystem;
+    [SerializeField] ParticleSystem smokeparticleSystem;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] AudioSource playerAudio;
 
-    public float jumpForce = 4.0f;
-    public float gravityModifier;
-    public bool isonGround = true;
-    public bool gameOver = false;
+
+    [SerializeField] float jumpForce = 4.0f;
+    [SerializeField] float gravityModifier;
+    [SerializeField] bool isonGround = true;
+    [NonSerialized] public bool gameOver = false;
 
     void Start() {
         p1RB = GetComponent<Rigidbody>();

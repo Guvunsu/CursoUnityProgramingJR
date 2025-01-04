@@ -5326,8 +5326,10 @@ GameObject:
   - component: {fileID: 8241448880392688289}
   - component: {fileID: 8241448880400496855}
   - component: {fileID: 8241448879431697764}
+  - component: {fileID: 4118966902396872934}
   - component: {fileID: 8241448879431697766}
-  - component: {fileID: 353968393887968187}
+  - component: {fileID: 2096493775709984012}
+  - component: {fileID: 410366877253386565}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -5343,7 +5345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8241448880393145375}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5418,8 +5420,22 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.20060201, z: 0.25767878}
-  m_Center: {x: 1.0660574e-16, y: 0.09030103, z: 0.027997257}
+  m_Size: {x: 0.2044794, y: 0.062123563, z: 0.24960081}
+  m_Center: {x: 0.05382079, y: 0.15954055, z: 0.03801159}
+--- !u!114 &4118966902396872934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241448880393145375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd56477307ae34a53ab47afc77a08392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftLimit: -26
+  bottomLimit: 0
 --- !u!114 &8241448879431697766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5433,7 +5449,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
---- !u!114 &353968393887968187
+--- !u!54 &2096493775709984012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241448880393145375}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &410366877253386565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5442,7 +5474,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8241448880393145375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd56477307ae34a53ab47afc77a08392, type: 3}
+  m_Script: {fileID: 11500000, guid: 22f880a64e2c84b0a8be42be264f9bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8241448880393145945
