@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController2 : MonoBehaviour {
 
     [SerializeField] Rigidbody p1RB;
-    [SerializeField] Animator playerAnimator;
+    private Animator playerAnimator;
     [SerializeField] ParticleSystem dirtparticleSystem;
     [SerializeField] ParticleSystem smokeparticleSystem;
     [SerializeField] AudioClip jumpSound;
@@ -14,7 +14,7 @@ public class PlayerController2 : MonoBehaviour {
     [SerializeField] AudioSource playerAudio;
 
 
-    [SerializeField] float jumpForce = 4.0f;
+    [SerializeField] float jumpForce;
     [SerializeField] float gravityModifier;
     [SerializeField] bool isonGround = true;
     [NonSerialized] public bool gameOver = false;
@@ -29,16 +29,15 @@ public class PlayerController2 : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         jump();
-
     }
     public void jump() {
 
-        if (Input.GetKeyDown(KeyCode.M) && isonGround && !gameOver) {
-            dirtparticleSystem.Stop();
+        if (Input.GetKeyDown(KeyCode.Space) && isonGround && !gameOver) {
             p1RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isonGround = false;
             playerAnimator.SetTrigger("Jump_trig");
             playerAudio.PlayOneShot(jumpSound, 1.0f);
+            dirtparticleSystem.Stop();
         }
 
     }
@@ -49,13 +48,13 @@ public class PlayerController2 : MonoBehaviour {
             dirtparticleSystem.Play();
 
         } else if (collision.gameObject.CompareTag("Obstacle")) {
+            Debug.Log("GameOver");
+            gameOver = true;
+            playerAnimator.SetBool("Death_b", true);
+            playerAnimator.SetInteger("DeathType_int", 1);
             //xploxionParticule.Play();
             dirtparticleSystem.Stop();
             playerAudio.PlayOneShot(crashSound, 1.0f);
-            Debug.Log("GameOver");
-            gameOver = true;
-            playerAnimator.SetBool("Dead_b", true);
-            playerAnimator.SetInteger("DeathType_int", 1);
             smokeparticleSystem.Play();
         }
     }
