@@ -9,6 +9,7 @@ public class PlayerController2 : MonoBehaviour {
     private Animator playerAnimator;
     [SerializeField] ParticleSystem dirtparticleSystem;
     [SerializeField] ParticleSystem smokeparticleSystem;
+    [SerializeField] ParticleSystem xploxionParticule;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioSource playerAudio;
@@ -52,7 +53,7 @@ public class PlayerController2 : MonoBehaviour {
             gameOver = true;
             playerAnimator.SetBool("Death_b", true);
             playerAnimator.SetInteger("DeathType_int", 1);
-            //xploxionParticule.Play();
+            xploxionParticule.Play();
             dirtparticleSystem.Stop();
             playerAudio.PlayOneShot(crashSound, 1.0f);
             smokeparticleSystem.Play();
