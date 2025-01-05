@@ -5,13 +5,13 @@ using UnityEngine;
 public class SpawnManagerX3 : MonoBehaviour {
     public GameObject[] objectPrefabs;
     private float spawnDelay = 2;
-    private float spawnInterval = 1.5f;
+    private float spawnInterval = 1.8f;
 
     private PlayerControllerX3 playerControllerScript;
 
     // Start is called before the first frame update
     void Start() {
-        InvokeRepeating("PrawnsObject", spawnDelay, spawnInterval);
+        InvokeRepeating("SpawnObjects", spawnDelay, spawnInterval);
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX3>();
     }
 

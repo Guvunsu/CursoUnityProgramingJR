@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerX3 : MonoBehaviour
-{
+public class PlayerControllerX3 : MonoBehaviour {
     public bool gameOver;
 
     public float floatForce;
@@ -22,7 +21,7 @@ public class PlayerControllerX3 : MonoBehaviour
     void Start() {
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
-
+        playerRb = GetComponent<Rigidbody>();
         // Apply a small upward force at the start of the game
         playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
