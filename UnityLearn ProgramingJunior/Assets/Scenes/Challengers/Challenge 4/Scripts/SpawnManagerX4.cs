@@ -12,13 +12,13 @@ public class SpawnManagerX4 : MonoBehaviour {
 
     public int enemyCount;
     public int waveCount = 1;
-
+    public float enemySpeed = 5f;
 
     public GameObject player;
 
     // Update is called once per frame
     void Update() {
-        enemyCount = GameObject.FindGameObjectsWithTag("Powerup").Length;
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         if (enemyCount == 0) {
             SpawnEnemyWave(waveCount);
@@ -40,15 +40,16 @@ public class SpawnManagerX4 : MonoBehaviour {
         // If no powerups remain, spawn a powerup
         if (GameObject.FindGameObjectsWithTag("Powerup").Length == 0) // check that there are zero powerups
         {
-            Instantiate(powerupPrefab, GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefab.transform.rotation);
+            Instantiate(powerupPrefab, GenerateSpawnPosition() + powerupSpawnOffset , powerupPrefab.transform.rotation);
         }
 
         // Spawn number of enemy balls based on wave number
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < enemiesToSpawn; i++) {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
 
         waveCount++;
+        enemySpeed += 1f;
         ResetPlayerPosition(); // put player back at start
 
     }

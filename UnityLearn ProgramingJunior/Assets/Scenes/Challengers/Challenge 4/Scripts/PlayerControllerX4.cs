@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerX4 : MonoBehaviour
-{
+public class PlayerControllerX4 : MonoBehaviour {
     private Rigidbody playerRb;
     private float speed = 500;
     private GameObject focalPoint;
+    public ParticleSystem dust;
 
     public bool hasPowerup;
     public GameObject powerupIndicator;
@@ -18,19 +18,32 @@ public class PlayerControllerX4 : MonoBehaviour
     void Start() {
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
+        StartCoroutine(PowerupCooldown());
     }
 
     void Update() {
-        // Add force to player in direction of the focal point (and camera)
-        float verticalInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime);
-
+        MovPlayerController();
+        IntantiatePowerUp();
+    }
+    void IntantiatePowerUp() {
         // Set powerup indicator position to beneath player
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
-
     }
-
     // If Player collides with powerup, activate powerup
+    void MovPlayerController() {
+        // Add force to player in direction of the focal point (and camera)
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime);
+        playerRb.AddForce(focalPoint.transform.right * horizontalInput * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.Space)) {
+            speed = 1000;
+            dust.Play();
+            playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime);
+            playerRb.AddForce(focalPoint.transform.right * verticalInput * speed * Time.deltaTime);
+            dust.Stop();
+        }
+    }
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Powerup")) {
             Destroy(other.gameObject);
@@ -50,7 +63,7 @@ public class PlayerControllerX4 : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Enemy")) {
             Rigidbody enemyRigidbody = other.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = transform.position - other.gameObject.transform.position;
+            Vector3 awayFromPlayer = other.gameObject.transform.position - transform.position;
 
             if (hasPowerup) // if have powerup hit enemy with powerup force
             {
@@ -59,7 +72,12 @@ public class PlayerControllerX4 : MonoBehaviour
               {
                 enemyRigidbody.AddForce(awayFromPlayer * normalStrength, ForceMode.Impulse);
             }
-
+            if (other.gameObject.CompareTag("Powerup")) {
+                Destroy(other.gameObject);
+                hasPowerup = true;
+                powerupIndicator.SetActive(true); // Activa el indicador del potenciador
+                StartCoroutine(PowerupCooldown()); // Inicia la corrutina para gestionar la duración del potenciador
+            }
 
         }
     }
