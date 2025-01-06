@@ -11,12 +11,12 @@ public class MovPlayerLab : MonoBehaviour {
     public float speed = 0.0f;
     private float zBound = 6;
     float inHi;
-   // float inVe;
+    // float inVe;
 
 
 
     void Start() {
-
+        rb.GetComponent<Rigidbody>().velocity = Vector3.zero;//o solo llamar el rb seria suficiente
     }
 
     // Update is called once per frame
@@ -39,11 +39,11 @@ public class MovPlayerLab : MonoBehaviour {
     void movPlayerLab() {
 
         inHi = Input.GetAxis("Horizontal");
-      //  inVe = Input.GetAxis("Vertical");
+        //  inVe = Input.GetAxis("Vertical");
         //if (Input.GetKeyDown(KeyCode.LeftShift)) {
         //    speed = 30.0f;
         //}
-       // rb.AddForce(Vector3.forward * speed * inVe);
+        // rb.AddForce(Vector3.forward * speed * inVe);
         rb.AddForce(Vector3.right * speed * inHi);
     }
 
