@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class SpawnManLabMyGame : MonoBehaviour {
 
-
-
     public Rigidbody[] enemies;
     public Rigidbody superPoder;
 
-    [SerializeField] float zEnemiesSpawn = 4.35f;              //cambiar los valores / change the value later
+    [SerializeField] float zEnemiesSpawn = 4.35f;
     [SerializeField] float xSpawnRange = 4.35f;
     [SerializeField] float zSuperPoderRange = 6.40f;
 
@@ -24,20 +22,15 @@ public class SpawnManLabMyGame : MonoBehaviour {
     [SerializeField] int randomIndex;
     [SerializeField] float ySpawn = 0.75f;
 
-
-
     void Start() {
         // EnemiesSpawnRandom();
         invokeRepeting();
         // SuperpoderSpawnRandom();
     }
-
-    void Update() {
-
+    void invokeRepeting() {
+        InvokeRepeating("EnemiesSpawnRandom", starDelay, enemySpawnTime);
+        InvokeRepeating("SuperpoderSpawnRandom", starDelay, superpoderSpawnTime);
     }
-
-
-
     void EnemiesSpawnRandom() {
         randomX = Random.Range(-xSpawnRange, xSpawnRange);
         randomZ = Random.Range(-zSuperPoderRange, zSuperPoderRange);
@@ -46,8 +39,8 @@ public class SpawnManLabMyGame : MonoBehaviour {
         spawnPositions = new Vector3(randomX, ySpawn, zEnemiesSpawn);
 
         Instantiate(enemies[randomIndex], spawnPositions, enemies[randomIndex].gameObject.transform.rotation);
+        Debug.Log("Enemigo instanciado: " + enemies + " en posición " + spawnPositions);
     }
-
     void SuperpoderSpawnRandom() {
         randomX = Random.Range(-xSpawnRange, xSpawnRange);
         randomZ = Random.Range(-zSuperPoderRange, zSuperPoderRange);
@@ -55,9 +48,5 @@ public class SpawnManLabMyGame : MonoBehaviour {
         spawnPositions = new Vector3(randomX, ySpawn, randomZ);
 
         Instantiate(superPoder, spawnPositions, superPoder.gameObject.transform.rotation);
-    }
-    void invokeRepeting() {
-        InvokeRepeating("EnemiesSpawnRandom", starDelay, enemySpawnTime);
-        InvokeRepeating("SuperpoderSpawnRandom", starDelay, superpoderSpawnTime);
     }
 }

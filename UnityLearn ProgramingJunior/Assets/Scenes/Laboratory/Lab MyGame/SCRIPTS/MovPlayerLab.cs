@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class MovPlayerLab : MonoBehaviour {
 
-
-
     public Rigidbody rb;
 
     public float speed = 0.0f;
-    private float zBound = 6;
-    float inHi;
-    // float inVe;
-
-
+    [SerializeField] float zBound;
+    float inHi, inVe;
 
     void Start() {
         rb.GetComponent<Rigidbody>().velocity = Vector3.zero;//o solo llamar el rb seria suficiente
@@ -24,42 +19,37 @@ public class MovPlayerLab : MonoBehaviour {
         movPlayerLab();
         containPlayerPosition();
     }
-
-
-
     void containPlayerPosition() {
         if (transform.position.z < -zBound) {
-            transform.position = new Vector3(transform.position.z, transform.position.y, -zBound);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
         }
         if (transform.position.z < zBound) {
-            transform.position = new Vector3(transform.position.z, transform.position.y, zBound);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
         }
     }
-
     void movPlayerLab() {
 
         inHi = Input.GetAxis("Horizontal");
-        //  inVe = Input.GetAxis("Vertical");
-        //if (Input.GetKeyDown(KeyCode.LeftShift)) {
-        //    speed = 30.0f;
-        //}
-        // rb.AddForce(Vector3.forward * speed * inVe);
-        rb.AddForce(Vector3.right * speed * inHi);
+        inVe = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            speed = 30.0f;
+        } else {
+            speed = 15f;
+        }
+        Vector3 move = new Vector3(inHi, 0, inVe) * speed * Time.deltaTime;
+        transform.Translate(move, Space.World); // Movimiento suave
     }
-
-    private void OnCollisionEnter(Collision collisionEnemy) {
-        if (collisionEnemy.gameObject.CompareTag("Enemy")) {
+    private void OnCollisionEnter(Collision other) {
+        //enemy
+        if (other.gameObject.CompareTag("Enemy")) {
+            Destroy(this.gameObject, 1f);
             Debug.Log(" El enemigo me a tocado D:< ");
         }
-    }
-
-    private void OnTriggerEnter(Collider powerUp) {
-        if (powerUp.gameObject.CompareTag("PowerUp")) {
-            Destroy(powerUp.gameObject);
+        //powerUp
+        if (other.gameObject.CompareTag("PowerUp")) {
+            Destroy(this.gameObject, 1f);
+            Debug.Log(" El powerUp me a tocado D:< ");
         }
     }
-
-
-
 }
 
