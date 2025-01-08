@@ -15,7 +15,7 @@ public class DifficultyButton : MonoBehaviour {
 
     void Start() {
         getComponentes();
-        gameManagerItems = GameObject.Find("Game Manager").GetComponent<GameManagerItems>();
+        gameManagerItems = GameObject.Find("GameManager").GetComponent<GameManagerItems>();
         button.onClick.AddListener(SetDifficulty);
     }
 

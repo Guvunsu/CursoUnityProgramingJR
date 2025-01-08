@@ -37,18 +37,11 @@ public class GameManagerItems : MonoBehaviour {
         UpdateScore(0);
         gameOverTextMeshPro();
     }
-    private void UpdateScore(int scoreToAdd) {
+    public void UpdateScore(int scoreToAdd) {
         score += scoreToAdd;
         scoreText.text = "Score" + score;
     }
 
-    IEnumerator SpawnTargetz() {
-        while (isGameActive) {
-            yield return new WaitForSeconds(spawnRate);
-            index = Random.Range(0, targets.Count);
-            Instantiate(targets[index]);
-        }
-    }
 
     public void gameOverTextMeshPro() {
 
@@ -56,8 +49,15 @@ public class GameManagerItems : MonoBehaviour {
         isGameActive = false;
     }
 
-    void RestartGame() {
+    public void RestartGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         titleScreen.gameObject.SetActive(false);
+    }
+    IEnumerator SpawnTargetz() {
+        while (isGameActive) {
+            yield return new WaitForSeconds(spawnRate);
+            index = Random.Range(0, targets.Count);
+            Instantiate(targets[index]);
+        }
     }
 }
