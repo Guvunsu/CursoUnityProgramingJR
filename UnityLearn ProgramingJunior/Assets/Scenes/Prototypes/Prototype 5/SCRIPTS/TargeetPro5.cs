@@ -7,49 +7,34 @@ using UnityEngine;
 public class TargeetPro5 : MonoBehaviour {
 
     public ParticleSystem explosionParticle;
-
-    private GameManagerItems gameManagerItems;
+    private GameManagerItems gameManager;
     private Rigidbody targetPro5;
 
-    public int pointValue;
+    [SerializeField] int pointValue;
 
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
-    private float maxTorque = 10;
-    private float xRange = 4;
-    private float ySpawnPos = -6;
-
-
+    [SerializeField] float minSpeed = 12;
+    [SerializeField] float maxSpeed = 16;
+    [SerializeField] float maxTorque = 10;
+    [SerializeField] float xRange = 4;
+    [SerializeField] float ySpawnPos = -6;
 
     void Start() {
         targetPro5 = GetComponent<Rigidbody>();
-        if (targetPro5 == null) {
-            Debug.LogError("No se encontró Rigidbody en el objeto.");
-        }
-
-        GameObject gameOverObject = GameObject.Find("GameOver");
-        if (gameOverObject != null) {
-            gameManagerItems = gameOverObject.GetComponent<GameManagerItems>();
-        } else {
-            Debug.LogError("GameOver GameObject no encontrado.");
-        }
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerItems>();
         targetPro5.AddForce(RandomForce(), ForceMode.Impulse);
         targetPro5.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+
         transform.position = RandomSpawnPos();
     }
     void Update() {
 
     }
-
-
-
     private void OnMouseDown() {
-        if (gameManagerItems.isGameActive) {
-      
+        if (gameManager.isGameActive) {
+            print("me presionan pero no me ejecuto para destruirme amo mio");
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-            gameManagerItems.UpdateScore(pointValue);//esta la funcion en GameManagerItems
+            gameManager.UpdateScore(pointValue);//esta la funcion en GameManagerItems
         }
     }
 
@@ -58,7 +43,7 @@ public class TargeetPro5 : MonoBehaviour {
         Destroy(gameObject);
 
         if (other.CompareTag("Bad")) {
-            gameManagerItems.gameOverTextMeshPro();
+            gameManager.gameOverTextMeshPro();
         }
 
     }

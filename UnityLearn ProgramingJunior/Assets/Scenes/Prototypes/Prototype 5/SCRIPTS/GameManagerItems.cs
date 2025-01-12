@@ -15,27 +15,28 @@ public class GameManagerItems : MonoBehaviour {
     public GameObject titleScreen;//no me quiere sallir para el gameobject game manager
 
 
-    int index;
+    [SerializeField] int index;
+    [SerializeField] int score;
+    [SerializeField] float spawnRate = 1.0f;
 
-    private int score;
-    private float spawnRate = 1.0f;
+    public bool isGameActive = true;
 
-    public bool isGameActive;
-
-    //void Start() {
-    //    StartGame(difficulty);//corregir esto
-    //}
+    void Start() {
+        isGameActive = true;
+        StartCoroutine(SpawnTargetz());
+        score = 0;
+        UpdateScore(0);
+        gameOverText.gameObject.SetActive(true);
+    }
     void Update() {
 
     }
-
-    public void StartGame(int difficulty) {
-        isGameActive = true;
-        score = 0;
-        spawnRate /= difficulty;
-        StartCoroutine(SpawnTargetz());
-        UpdateScore(0);
-        gameOverTextMeshPro();
+    IEnumerator SpawnTargetz() {
+        while (isGameActive) {
+            yield return new WaitForSeconds(spawnRate);
+            index = Random.Range(0, targets.Count);
+            Instantiate(targets[index]);
+        }
     }
     public void UpdateScore(int scoreToAdd) {
         score += scoreToAdd;
@@ -46,18 +47,13 @@ public class GameManagerItems : MonoBehaviour {
     public void gameOverTextMeshPro() {
 
         restartButton.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
         isGameActive = false;
     }
 
     public void RestartGame() {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        titleScreen.gameObject.SetActive(false);
     }
-    IEnumerator SpawnTargetz() {
-        while (isGameActive) {
-            yield return new WaitForSeconds(spawnRate);
-            index = Random.Range(0, targets.Count);
-            Instantiate(targets[index]);
-        }
-    }
+
 }
