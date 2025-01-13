@@ -1,52 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CongratScript : MonoBehaviour {
-    //public TextMesh Text;
-    public ParticleSystem SparksParticles;
+    public ParticleSystem SparksParticles; // Vincula el sistema de partículas desde el Editor.
+    public TextMeshProUGUI textMeshPro;   // Vincula el componente TextMeshProUGUI desde el Editor.
 
-    private List<string> TextToDisplay;
-    private TextMeshProUGUI textMeshPro;
+    private List<string> TextToDisplay;  // Lista de textos para mostrar.
+    public float RotatingSpeed = 1.0f;  // Velocidad configurable desde el Editor.
+    private float TimeToNextText;       // Control del tiempo entre cambios de texto.
+    private int CurrentText;            // Índice actual del texto a mostrar.
 
-
-    private float RotatingSpeed;
-    private float TimeToNextText;
-
-    private int CurrentText;
-
-    // Start is called before the first frame update
     void Start() {
+        // Inicializar variables.
         TimeToNextText = 0.0f;
         CurrentText = 0;
 
-        RotatingSpeed = 1.0f;
+        // Inicializar lista de textos.
+        TextToDisplay = new List<string> { "Congratulations!", "All Errors Fixed" };
 
-        TextToDisplay.Add("Congratulation");
-        TextToDisplay.Add("All Errors Fixed");
+        // Validar referencias.
+        if (textMeshPro == null) {
+            Debug.LogError("TextMeshProUGUI no asignado en el Inspector.");
+            return;
+        }
 
+        if (SparksParticles == null) {
+            Debug.LogError("ParticleSystem no asignado en el Inspector.");
+            return;
+        }
+
+        // Mostrar el primer texto y activar partículas.
         textMeshPro.text = TextToDisplay[0];
-
         SparksParticles.Play();
     }
 
-    // Update is called once per frame
     void Update() {
-        TimeToNextText += RotatingSpeed *Time.deltaTime;//hice esto
+        // Incrementar tiempo y cambiar texto según el temporizador.
+        TimeToNextText += RotatingSpeed * Time.deltaTime;
 
         if (TimeToNextText > 1.5f) {
-            TimeToNextText = 0.0f;
+            TimeToNextText = 0.0f; // Reiniciar temporizador.
 
+            // Avanzar al siguiente texto.
             CurrentText++;
             if (CurrentText >= TextToDisplay.Count) {
-                CurrentText = 0;
-
-
-                textMeshPro.text = TextToDisplay[CurrentText];
+                CurrentText = 0; // Reiniciar índice si supera la cantidad de textos.
             }
+
+            // Actualizar el texto mostrado.
+            textMeshPro.text = TextToDisplay[CurrentText];
         }
     }
 }
