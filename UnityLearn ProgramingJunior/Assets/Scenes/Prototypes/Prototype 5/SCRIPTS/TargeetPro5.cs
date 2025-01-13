@@ -31,7 +31,7 @@ public class TargeetPro5 : MonoBehaviour {
     }
     private void OnMouseDown() {
         if (gameManager.isGameActive) {
-            print("me presionan pero no me ejecuto para destruirme amo mio");
+            //print("me presionan pero no me ejecuto para destruirme amo mio");
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);//esta la funcion en GameManagerItems
@@ -39,11 +39,11 @@ public class TargeetPro5 : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Colisión detectada con: " + other.gameObject.name);
+        //Debug.Log("Colisión detectada con: " + other.gameObject.name);
         Destroy(gameObject);
 
-        if (other.CompareTag("Bad")) {
-            gameManager.gameOverTextMeshPro();
+        if (!other.CompareTag("Bad")) {
+            gameManager.gameOver();
         }
 
     }

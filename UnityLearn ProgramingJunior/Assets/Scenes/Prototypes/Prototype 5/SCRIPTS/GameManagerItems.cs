@@ -9,8 +9,8 @@ public class GameManagerItems : MonoBehaviour {
 
 
     public TextMeshProUGUI gameOverText;
-    public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
+    public List<GameObject> targets;
     public Button restartButton;
     public GameObject titleScreen;//no me quiere sallir para el gameobject game manager
 
@@ -26,7 +26,7 @@ public class GameManagerItems : MonoBehaviour {
         StartCoroutine(SpawnTargetz());
         score = 0;
         UpdateScore(0);
-        gameOverText.gameObject.SetActive(true);
+
     }
     void Update() {
 
@@ -44,15 +44,15 @@ public class GameManagerItems : MonoBehaviour {
     }
 
 
-    public void gameOverTextMeshPro() {
-
+    public void gameOver() {
         restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
+
         isGameActive = false;
     }
 
     public void RestartGame() {
-
+        Debug.Log("Colisión detectada con el boton: ");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
