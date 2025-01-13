@@ -11,7 +11,6 @@ public class TargeetPro5 : MonoBehaviour {
     private Rigidbody targetPro5;
 
     [SerializeField] int pointValue;
-
     [SerializeField] float minSpeed = 12;
     [SerializeField] float maxSpeed = 16;
     [SerializeField] float maxTorque = 10;
@@ -26,9 +25,6 @@ public class TargeetPro5 : MonoBehaviour {
 
         transform.position = RandomSpawnPos();
     }
-    void Update() {
-
-    }
     private void OnMouseDown() {
         if (gameManager.isGameActive) {
             //print("me presionan pero no me ejecuto para destruirme amo mio");
@@ -37,15 +33,12 @@ public class TargeetPro5 : MonoBehaviour {
             gameManager.UpdateScore(pointValue);//esta la funcion en GameManagerItems
         }
     }
-
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Colisión detectada con: " + other.gameObject.name);
         Destroy(gameObject);
-
         if (!other.CompareTag("Bad")) {
             gameManager.gameOver();
         }
-
     }
     Vector3 RandomForce() {
         return Vector3.up * UnityEngine.Random.Range(minSpeed, maxSpeed);
@@ -56,7 +49,6 @@ public class TargeetPro5 : MonoBehaviour {
     Vector3 RandomSpawnPos() {
         return new Vector3(UnityEngine.Random.Range(-xRange, xRange), ySpawnPos);
     }
-
 }
 
 

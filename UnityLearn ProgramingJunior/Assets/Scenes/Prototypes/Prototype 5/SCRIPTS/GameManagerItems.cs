@@ -4,16 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameManagerItems : MonoBehaviour {
 
-
-    public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI scoreText;
-    public List<GameObject> targets;
-    public Button restartButton;
-    public GameObject titleScreen;//no me quiere sallir para el gameobject game manager
-
+    [SerializeField] TextMeshProUGUI gameOverText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] List<GameObject> targets;
+    [SerializeField] Button restartButton;
+    [SerializeField] GameObject titleScreen;
 
     [SerializeField] int index;
     [SerializeField] int score;
@@ -21,20 +20,10 @@ public class GameManagerItems : MonoBehaviour {
 
     public bool isGameActive = true;
 
-    void Start() {
-        isGameActive = true;
-        StartCoroutine(SpawnTargetz());
-        score = 0;
-        UpdateScore(0);
-
-    }
-    void Update() {
-
-    }
     IEnumerator SpawnTargetz() {
         while (isGameActive) {
             yield return new WaitForSeconds(spawnRate);
-            index = Random.Range(0, targets.Count);
+            index = UnityEngine.Random.Range(0, targets.Count);
             Instantiate(targets[index]);
         }
     }
@@ -42,18 +31,22 @@ public class GameManagerItems : MonoBehaviour {
         score += scoreToAdd;
         scoreText.text = "Score" + score;
     }
-
-
     public void gameOver() {
         restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
 
         isGameActive = false;
     }
-
     public void RestartGame() {
         Debug.Log("Colisión detectada con el boton: ");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    public void StartGame(int difficulty) {
+        isGameActive = true;
+        score = 0;
+        spawnRate /= difficulty;
+        StartCoroutine(SpawnTargetz());
+        UpdateScore(0);
+        titleScreen.SetActive(false);
+    }
 }
